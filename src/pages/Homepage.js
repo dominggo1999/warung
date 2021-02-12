@@ -1,7 +1,7 @@
 import React from 'react';
 import DirectoryMenu from '../components/DirectoryMenu';
 
-const Homepage = () => {
+const Homepage = (props) => {
   return (
     <div className="homepage">
       <DirectoryMenu />
