@@ -1,6 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
 $openSans: 'Open Sans Condensed', sans-serif;
 
 // Colors
 $w: #fff;
+$b: #000;
+
+// Breakpoint
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;

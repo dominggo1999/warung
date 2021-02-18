@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MenuItem from './MenuItem';
-import sections from '../data';
+import { SECTIONS } from '../static';
 
 const DirectoryMenu = () => {
+  const [sections, setSections] = useState(SECTIONS);
+
   return (
     <div className="directory-menu">
       {
         sections.map(({
           id,
           ...sections
-        }) => {
-          return (
-            <MenuItem
-              key={id}
-              {...sections}
-            />
-          );
-        })
+        }) => (
+          <MenuItem
+            key={id}
+            {...sections}
+          />
+        ))
       }
     </div>
   );
