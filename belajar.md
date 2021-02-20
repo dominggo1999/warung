@@ -15,3 +15,7 @@ https://github.com/ReactTraining/react-router/blob/master/packages/react-router/
 # using useRouter
 
 https://usehooks.com/useRouter/
+
+# usahakan state ada di level terendah
+
+untuk meminimalkan component yang akan di re-render
