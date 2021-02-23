@@ -28,6 +28,13 @@ const Header = () => {
         >
           CONTACT
         </NavLink>
+        <NavLink
+          to="/register"
+          className="option"
+          activeClassName="selected"
+        >
+          Sign In
+        </NavLink>
       </div>
     </div>
   );
