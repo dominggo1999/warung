@@ -1,0 +1,20 @@
+.btn {
+  text-transform: uppercase;
+  border: none;
+  font-family: $openSans;
+  font-weight: 500;
+  color: #fff;
+  background: #010001;
+  padding: 15px 30px;
+  margin-right: 15px;
+
+  &.blue {
+    background: #4178ed;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn {
+    padding: 15px 15px;
+  }
+}
