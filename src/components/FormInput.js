@@ -14,7 +14,11 @@ const FormInput = ({
         onChange={handleChange}
         autoComplete={type === 'password' ? 'new-password' : ''}
       />
-      <label htmlFor={label}>{title}</label>
+      <label
+        className={value ? 'fix' : null}
+        htmlFor={label}
+      >{title}
+      </label>
     </div>
   );
 };

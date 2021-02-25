@@ -44,9 +44,13 @@ const SignUp = () => {
     }
   };
 
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="sign-up">
-      <form>
+      <form onSubmit={handleSignUpSubmit}>
         <FormHeader
           title="I do not have an account"
           description="Sign in with your email and password"
