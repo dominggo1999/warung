@@ -17,11 +17,11 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-// Kalau user sign in pakai google
+// Kalau user sign in pakai google atau sign up pakai email
 // Check apakah akunnya sudah terdaftar atau tidak
 // Kalau belum buat akunnya di firestore
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
+export const createUserProfileDocument = async (userAuth, additionalData, createNew = false) => {
   // Hanya akses firestore kalau ada user yang sign in
   if(!userAuth) return;
 
@@ -33,8 +33,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   // Buat akun kalau belum ada
   if(!snapshot.exists) {
-    const { displayName, email } = userAuth;
+    const { email } = userAuth;
+    // Set display name when sign in/up using google
+    const createDisplayNameFromEmail = (email) => {
+      return email.split('@')[0];
+    };
     const createdAt = new Date();
+
+    const displayName = createNew ? additionalData.displayName : createDisplayNameFromEmail(email);
 
     try {
       userRef.set({
@@ -47,6 +53,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
       console.log('Error message :', error);
     }
   }
+
+  return userRef;
 };
 
 const provider = new firebase.auth.GoogleAuthProvider();

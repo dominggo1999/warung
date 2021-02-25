@@ -11,15 +11,28 @@ const App = () => {
   const [currentUser, setCurrenUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
-      setCurrenUser(user);
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if(userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapshot) => {
+          setCurrenUser({
+            id: snapshot.id,
+            ...snapshot.data(),
+          });
+        });
+      } else {
+        // Kalau sign out kembalikan user state ke null
+        setCurrenUser(userAuth);
+      }
     });
 
     return () => {
       unsubscribeFromAuth();
     };
   }, []);
+
+  console.log(currentUser);
 
   return (
     <div>

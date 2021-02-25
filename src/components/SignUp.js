@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import FormHeader from './FormHeader';
 import FormInput from './FormInput';
 import Button from './Button';
+import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
+
+const initialState = {
+  displayName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 const SignUp = () => {
-  const [inputValue, setInputValue] = useState({
-    displayName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  const [inputValue, setInputValue] = useState(initialState);
 
   const handleChange = (e) => {
     const newValue = e.target.value;
@@ -44,8 +47,31 @@ const SignUp = () => {
     }
   };
 
-  const handleSignUpSubmit = (e) => {
+  const handleSignUpSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(inputValue);
+    const {
+      displayName, email, password, confirmPassword,
+    } = inputValue;
+
+    if(password !== confirmPassword) {
+      console.log("passwords don't match");
+      return;
+    }
+
+    try {
+      // Buat akun (auth)
+      const { user } = auth.createUserWithEmailAndPassword(email, password);
+
+      // Tambahakan user ke database
+      await createUserProfileDocument(user, { displayName }, true);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // Kosongkan form
+    setInputValue(initialState);
   };
 
   return (
@@ -87,7 +113,10 @@ const SignUp = () => {
         </div>
 
         <div className="btn-container">
-          <Button title="sign up" />
+          <Button
+            title="sign up"
+            type="submit"
+          />
         </div>
       </form>
     </div>
