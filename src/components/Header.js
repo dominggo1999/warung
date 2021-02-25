@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { ReactComponent as Logo } from '../assets/crown.svg';
-import { auth, firestore }from '../firebase/firebase.utils';
+import { auth }from '../firebase/firebase.utils';
 
 const Header = ({ currentUser }) => {
   return (
@@ -54,4 +55,11 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+// Syntax
+// value : state.namaReducer.valueyangdipakai
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+// Connect is an HOC
+export default connect(mapStateToProps)(Header);

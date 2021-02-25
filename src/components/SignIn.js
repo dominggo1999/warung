@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FormHeader from './FormHeader';
 import FormInput from './FormInput';
 import Button from './Button';
-import { auth } from '../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../firebase/firebase.utils';
 
 const initialState = {
   email: '',
@@ -63,10 +63,13 @@ const SignIn = () => {
           />
         </div>
         <div className="btn-container">
-          <Button title="sign in" />
           <Button
+            title="sign in"
             type="submit"
+          />
+          <Button
             title="sign in with google"
+            clickHandler={signInWithGoogle}
             blue
           />
         </div>
