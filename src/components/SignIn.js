@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import FormHeader from './FormHeader';
 import FormInput from './FormInput';
 import Button from './Button';
+import { auth } from '../firebase/firebase.utils';
 
-import { signInWithGoogle } from '../firebase/firebase.utils';
+const initialState = {
+  email: '',
+  password: '',
+};
 
 const SignIn = () => {
-  const [inputValue, setInputValue] = useState({
-    email: '',
-    password: '',
-  });
+  const [inputValue, setInputValue] = useState(initialState);
 
   const handleChange = (e) => {
     if(e.target.id === 'signInEmail') {
@@ -25,8 +26,17 @@ const SignIn = () => {
     }
   };
 
-  const handleSignInSubmit = (e) => {
+  const handleSignInSubmit = async (e) => {
     e.preventDefault();
+
+    const { email, password } = inputValue;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error);
+    }
+    setInputValue(initialState);
   };
 
   return (
@@ -55,7 +65,7 @@ const SignIn = () => {
         <div className="btn-container">
           <Button title="sign in" />
           <Button
-            clickHandler={signInWithGoogle}
+            type="submit"
             title="sign in with google"
             blue
           />
