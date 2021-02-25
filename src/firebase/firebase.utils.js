@@ -17,6 +17,38 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+// Kalau user sign in pakai google
+// Check apakah akunnya sudah terdaftar atau tidak
+// Kalau belum buat akunnya di firestore
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  // Hanya akses firestore kalau ada user yang sign in
+  if(!userAuth) return;
+
+  // Cek document yang
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  // Ambil informasi document
+  const snapshot = await userRef.get();
+
+  // Buat akun kalau belum ada
+  if(!snapshot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log('Error message :', error);
+    }
+  }
+};
+
 const provider = new firebase.auth.GoogleAuthProvider();
 
 provider.setCustomParameters({
