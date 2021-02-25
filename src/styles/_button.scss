@@ -1,4 +1,5 @@
 .btn {
+  cursor: pointer;
   text-transform: uppercase;
   border: none;
   font-family: $openSans;
@@ -7,9 +8,16 @@
   background: #010001;
   padding: 15px 30px;
   margin-right: 15px;
+  &:hover {
+    background: #274581;
+  }
 
   &.blue {
     background: #4178ed;
+
+    &:hover {
+      background: #274581;
+    }
   }
 }
 

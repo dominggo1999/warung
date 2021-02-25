@@ -3,6 +3,8 @@ import FormHeader from './FormHeader';
 import FormInput from './FormInput';
 import Button from './Button';
 
+import { signInWithGoogle } from '../firebase/firebase.utils';
+
 const SignIn = () => {
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -53,6 +55,7 @@ const SignIn = () => {
         <div className="btn-container">
           <Button title="sign in" />
           <Button
+            clickHandler={signInWithGoogle}
             title="sign in with google"
             blue
           />

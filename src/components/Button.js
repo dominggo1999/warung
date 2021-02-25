@@ -4,8 +4,8 @@ const Button = ({ title, blue, clickHandler }) => {
   return (
     <>
       <button
-        onClick={clickHandler}
         className={`btn ${blue ? 'blue' : ''}`}
+        onClick={clickHandler}
       >{title}
       </button>
     </>

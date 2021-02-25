@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/style.scss';
 import { Route, Switch } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import ShopPage from './pages/ShopPage';
 import RegisterPage from './pages/RegisterPage';
 import Header from './components/Header';
+import { auth } from './firebase/firebase.utils';
 
 const App = () => {
+  const [currentUser, setCurrenUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => setCurrenUser(user));
+
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, []);
+
   return (
     <div>
-      <Header />
+      <Header currentUser={currentUser} />
       <Switch>
         <Route
           exact
