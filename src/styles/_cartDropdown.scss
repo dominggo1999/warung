@@ -16,8 +16,45 @@
     height: 240px;
     display: flex;
     flex-direction: column;
-    // overflow-y: scroll;
+    overflow-y: scroll;
     margin-bottom: auto;
+    &::-webkit-scrollbar {
+      width: 5px;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #c1c1c1; /* color of the tracking area */
+      border-radius: 20px; /* roundness of the scroll thumb */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: blue; /* color of the scroll thumb */
+      border-radius: 20px; /* roundness of the scroll thumb */
+      border: 3px solid $b; /* creates padding around scroll thumb */
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      .cart-item-image {
+        width: 80px;
+        margin-right: 10px;
+        img {
+          width: 80px;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      .cart-desc {
+        .cart-item-name {
+          font-weight: 500;
+          font-size: 15px;
+        }
+      }
+    }
   }
 
   .btn {
