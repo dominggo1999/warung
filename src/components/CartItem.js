@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CartItem = ({ item }) => {
-  console.log(item);
   const {
     name, imageUrl, price, quantity,
   } = item;

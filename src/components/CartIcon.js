@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ReactComponent as CartLogo } from '../assets/cart.svg';
 import { toggleCartHidden } from '../redux/cart/cartActions';
+import { selectCartItemsCount } from '../redux/cart/cartSelectors';
 
 const CartIcon = ({ toggleCartHidden, totalItems }) => {
   const biggerThanOneHundred = totalItems > 99;
-  console.log(biggerThanOneHundred);
 
   return (
     <span
@@ -23,10 +23,10 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-const mapStateToProps = (state) => ({
-  totalItems: state.cart.cartItems.reduce((accumulatedItem, currentItem) => {
-    return accumulatedItem + currentItem.quantity;
-  }, 0),
-});
+const mapStateToProps = (state) => {
+  return ({
+    totalItems: selectCartItemsCount(state),
+  });
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
