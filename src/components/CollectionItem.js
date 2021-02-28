@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 const CollectionItem = ({ name, imageUrl, price }) => {
   return (
@@ -8,11 +9,19 @@ const CollectionItem = ({ name, imageUrl, price }) => {
       <div
         className="image"
         style={{ backgroundImage: `url(${imageUrl})` }}
-      />
+      >
+        <div className="collection-item-hover">
+          <Button
+            title="add to cart"
+            className="inverted"
+          />
+        </div>
+      </div>
       <div className="collection-footer">
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+
     </div>
   );
 };

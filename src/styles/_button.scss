@@ -8,6 +8,12 @@
   background: #010001;
   padding: 15px 30px;
   margin-right: 15px;
+  outline: none;
+
+  &:active {
+    transform: scale(1.05);
+  }
+
   &:hover {
     background: #274581;
   }
@@ -19,6 +25,17 @@
       background: #274581;
     }
   }
+}
+
+.btn.inverted {
+  color: $b;
+  border: solid 2px $b;
+  background: rgba(255, 255, 255, 0.849);
+}
+
+.btn.inverted:hover {
+  color: $w;
+  background: $b;
 }
 
 @media screen and (max-width: 768px) {
