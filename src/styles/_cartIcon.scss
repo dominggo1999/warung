@@ -12,6 +12,15 @@
     margin-bottom: 5px;
   }
 
+  .cart-logo.big {
+    width: 30px;
+    height: 30px;
+
+    & + .item-count {
+      top: 12px;
+    }
+  }
+
   .item-count {
     position: absolute;
     font-weight: bold;

@@ -18,9 +18,18 @@
     flex-direction: column;
     overflow-y: scroll;
     margin-bottom: auto;
+
     &::-webkit-scrollbar {
+      display: none;
       width: 5px;
       border-radius: 20px;
+      transition: ease-in-out 1000ms;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar {
+        display: block;
+      }
     }
 
     &::-webkit-scrollbar-track {

@@ -3,15 +3,18 @@ import { connect } from 'react-redux';
 import { ReactComponent as CartLogo } from '../assets/cart.svg';
 import { toggleCartHidden } from '../redux/cart/cartActions';
 
-const CartIcon = ({ toggleCartHidden }) => {
+const CartIcon = ({ toggleCartHidden, totalItems }) => {
+  const biggerThanOneHundred = totalItems > 99;
+  console.log(biggerThanOneHundred);
+
   return (
     <span
       className="cart-icon"
       onClick={toggleCartHidden}
       role="button"
     >
-      <CartLogo className="cart-logo" />
-      <span className="item-count">0</span>
+      <CartLogo className={`cart-logo ${biggerThanOneHundred ? 'big' : null}`} />
+      <span className="item-count">{totalItems}</span>
     </span>
   );
 };
@@ -20,4 +23,10 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+const mapStateToProps = (state) => ({
+  totalItems: state.cart.cartItems.reduce((accumulatedItem, currentItem) => {
+    return accumulatedItem + currentItem.quantity;
+  }, 0),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
