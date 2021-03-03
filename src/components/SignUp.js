@@ -66,6 +66,13 @@ const SignUp = () => {
 
       // Tambahakan user ke database
       await createUserProfileDocument(user, { displayName }, true);
+
+      // Kalau sudah sign up user harus langsung sign in
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+      } catch (error) {
+        console.log(error);
+      }
     } catch (error) {
       console.log(error);
     }

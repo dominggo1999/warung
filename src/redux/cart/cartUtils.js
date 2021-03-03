@@ -1,3 +1,5 @@
+import { FaIgloo } from 'react-icons/fa';
+
 export const addItemToCart = (items, addedItem) => {
   // Cek apakah item sudah ada di cart atau belum
   const itemExist = items.find((item) => {
@@ -19,4 +21,18 @@ export const addItemToCart = (items, addedItem) => {
     ...addedItem,
     quantity: 1,
   }];
+};
+
+export const removeFromCart = (items, removedItem) => {
+  // Item pasti ada di cart items
+  // kalau qty nya tinggal satu
+  if(removedItem.quantity === 1) {
+    return items.filter((item) => item.id !== removedItem.id);
+  }
+
+  return items.map((item) => (item.id === removedItem.id
+    // kurangi jumlah nya 1
+    ? { ...item, quantity: item.quantity - 1 }
+    // Kalau bukan yang dicari biarkan tetap
+    : item));
 };

@@ -1,0 +1,88 @@
+.checkout-page {
+  margin: 50px auto 100px;
+  display: flex;
+  flex-direction: column;
+
+  .checkout-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .row {
+      display: flex;
+      width: 85%;
+      padding: 30px;
+      border-bottom: 2px solid $g;
+
+      .column {
+        max-width: 25%;
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          font-family: $openSans;
+          color: $g;
+        }
+      }
+    }
+
+    .row.table-item {
+      .item-image {
+        img {
+          width: 150px;
+        }
+      }
+
+      .item-quantity {
+        display: flex;
+        flex-direction: row;
+
+        span {
+          width: 25px;
+          font-weight: bold;
+        }
+
+        .qt-btn {
+          cursor: pointer;
+        }
+      }
+
+      .item-remove {
+        .remove-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          outline: none;
+
+          &:hover {
+            svg {
+              fill: #1e1e1e;
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .checkout-total {
+    width: 80%;
+    text-align: right;
+    margin: 0 auto;
+    margin-top: 30px;
+    font-size: 40px;
+    text-transform: uppercase;
+    color: $g;
+  }
+}
