@@ -2,6 +2,7 @@
   margin: 50px auto 100px;
   display: flex;
   flex-direction: column;
+  user-select: none;
 
   .checkout-container {
     max-width: 1170px;
@@ -14,7 +15,7 @@
 
     .row {
       display: flex;
-      width: 85%;
+      width: 90%;
       padding: 30px;
       border-bottom: 2px solid $g;
 
@@ -84,5 +85,16 @@
     font-size: 40px;
     text-transform: uppercase;
     color: $g;
+  }
+}
+
+.checkout-cart-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 20px;
   }
 }

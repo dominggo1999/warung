@@ -42,6 +42,9 @@ const CheckoutItem = ({
       <div className="column item-price">
         <span>${price}</span>
       </div>
+      <div className="column item-subtotal">
+        <span>${quantity * price}</span>
+      </div>
       <div className="column item-remove">
         <button
           className="remove-button"
